@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Astro Command — RTS</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="game-root">
+    <canvas id="game"></canvas>
+
+    <!-- Top resource bar -->
+    <div id="topbar" class="hidden">
+      <div class="res"><span class="res-icon mineral">◆</span><span id="mineral-count">0</span></div>
+      <div class="res"><span class="res-icon supply">▣</span><span id="supply-count">0/0</span></div>
+      <div class="res clock"><span id="game-clock">00:00</span></div>
+      <div class="spacer"></div>
+      <button id="btn-pause" class="topbtn" title="Pause (P / Esc)">⏸</button>
+    </div>
+
+    <!-- Bottom HUD -->
+    <div id="hud" class="hidden">
+      <div id="minimap-wrap">
+        <canvas id="minimap" width="220" height="220"></canvas>
+      </div>
+      <div id="selection-panel"></div>
+      <div id="command-card"></div>
+    </div>
+
+    <!-- Alerts / toasts -->
+    <div id="toasts"></div>
+
+    <!-- Main menu -->
+    <div id="menu" class="overlay">
+      <div class="menu-box">
+        <h1>ASTRO&nbsp;COMMAND</h1>
+        <p class="tagline">A real-time strategy game</p>
+        <div class="menu-row">
+          <label>Difficulty</label>
+          <div class="seg" id="difficulty-seg">
+            <button data-diff="easy">Easy</button>
+            <button data-diff="normal" class="active">Normal</button>
+            <button data-diff="hard">Hard</button>
+          </div>
+        </div>
+        <div class="menu-row">
+          <label>Map size</label>
+          <div class="seg" id="mapsize-seg">
+            <button data-size="small">Small</button>
+            <button data-size="medium" class="active">Medium</button>
+            <button data-size="large">Large</button>
+          </div>
+        </div>
+        <button id="btn-start" class="bigbtn">START SKIRMISH</button>
+        <button id="btn-tutorial" class="bigbtn alt">▶ TUTORIAL — learn to gather</button>
+        <button id="btn-help" class="linkbtn">How to play</button>
+      </div>
+    </div>
+
+    <!-- Help -->
+    <div id="help" class="overlay hidden">
+      <div class="menu-box wide">
+        <h2>How to play</h2>
+        <div class="help-grid">
+          <div><b>Goal</b><span>Destroy the enemy's Command Center. Don't lose yours.</span></div>
+          <div><b>Select</b><span>Left-click a unit, or drag a box. Shift-click to add.</span></div>
+          <div><b>Move / Act</b><span>Right-click to move, attack, gather, or build.</span></div>
+          <div><b>Camera</b><span>Arrow keys / screen-edge / minimap to pan. Wheel to zoom.</span></div>
+          <div><b>Attack-Move</b><span>Press <kbd>A</kbd> then click a destination.</span></div>
+          <div><b>Stop / Hold</b><span><kbd>S</kbd> stop · <kbd>H</kbd> hold position.</span></div>
+          <div><b>Control groups</b><span><kbd>Ctrl</kbd>+<kbd>1..9</kbd> assign · <kbd>1..9</kbd> recall.</span></div>
+          <div><b>Build</b><span>Select a Worker → pick a building → place it on the map.</span></div>
+          <div><b>Economy</b><span>Select a Worker, then <b>right-click</b> a <span class="mineral">◆ mineral</span> patch to mine. New to RTS? Try the <b>Tutorial</b> on the menu.</span></div>
+          <div><b>Pause</b><span><kbd>P</kbd> or <kbd>Esc</kbd>.</span></div>
+        </div>
+        <button id="btn-help-close" class="bigbtn">Got it</button>
+      </div>
+    </div>
+
+    <!-- End screen -->
+    <div id="endscreen" class="overlay hidden">
+      <div class="menu-box">
+        <h1 id="end-title">VICTORY</h1>
+        <p id="end-sub"></p>
+        <button id="btn-again" class="bigbtn">Play again</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

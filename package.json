@@ -1,0 +1,11 @@
+{
+  "name": "astro-command",
+  "version": "1.0.0",
+  "description": "Astro Command — a polished, dependency-free browser real-time strategy game (vanilla JS + Canvas 2D).",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/smoke.mjs && node test/dom-smoke.mjs && node test/gather.mjs && node test/tutorial.mjs"
+  },
+  "license": "MIT"
+}
