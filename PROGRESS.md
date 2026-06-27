@@ -47,7 +47,16 @@ Open http://localhost:8080 in a browser.
 - ui.js       — HUD + minimap + selection + command card
 - main.js     — bootstrap, menu, main loop
 
-## Status: COMPLETE & VERIFIED v1.1. See README.md.
+## Status: COMPLETE, VERIFIED & PUBLISHED v1.1. See README.md.
+
+## Published (2026-06-27)
+- GitHub repo: https://github.com/fernforge/astro-command (public, main branch).
+- Live on GitHub Pages: https://fernforge.github.io/astro-command/ (source = main, root).
+  Site is pure static (relative paths to styles.css + src/*.js); server.js is local-only.
+- Verified live: HTTP 200, correct MIME (modules = application/javascript), and a real
+  headless Chromium load → canvas renders, tutorial/HUD/minimap show, 0 console errors.
+- To update the live site: just `git push origin main` (Pages auto-rebuilds in ~1 min).
+- Auth: uses $GITHUB_TOKEN (PAT) baked into the `origin` remote URL.
 
 ### v1.1 — Interactive tutorial (answers "how do I make my units collect?")
 - New `src/tutorial.js`: step-driven, state-aware tutorial overlay.
