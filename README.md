@@ -3,9 +3,13 @@
 A polished, fully playable real-time strategy game built with **vanilla JavaScript + HTML5 Canvas**.
 No frameworks, no build step, no external dependencies — just a tiny Node static server.
 
-![menu](docs/preview.txt)
+### ▶ [Play it now in your browser](https://fernforge.github.io/astro-command/)
 
-## Run it
+No install required — runs entirely client-side on GitHub Pages.
+
+![Astro Command screenshot](docs/screenshot.png)
+
+## Run it locally
 
 ```bash
 node server.js
