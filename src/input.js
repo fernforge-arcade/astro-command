@@ -3,7 +3,7 @@
 export class Input {
   constructor(canvas) {
     this.canvas = canvas;
-    this.mx = 0; this.my = 0;         // mouse in canvas px
+    this.mx = -1; this.my = -1;       // mouse in canvas px (off-screen until first move, so edge-scroll doesn't fire at the 0,0 corner on load)
     this.keys = new Set();
     this.mouseDown = [false, false, false];
     this.wheel = 0;

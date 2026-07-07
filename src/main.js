@@ -58,6 +58,14 @@ function startGame(withTutorial) {
     : { difficulty: chosen.difficulty, mapSize: chosen.mapSize };
   game = new Game(opts);
   game.camera.setViewport(canvas.width, canvas.height);
+  // Re-center now that the viewport has real dimensions. The Game constructor
+  // centers on the player's command center, but it runs before setViewport, so
+  // at that point the viewport is 0x0 and the base lands in the top-left corner
+  // (or clamps off-screen) — the player opens to an empty fog screen otherwise.
+  {
+    const pcc = game.buildings.find(b => b.team === TEAM.PLAYER && b.key === 'command');
+    if (pcc) game.camera.centerOn(pcc.x, pcc.y);
+  }
   renderer = new Renderer(canvas, game);
   input = new Input(canvas);
   controller = new Controller(game, () => ui);
