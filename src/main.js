@@ -208,6 +208,7 @@ class Controller {
         g.selectAllOfTypeOnScreen(ent.key);
       } else {
         g.selectAt(wa.x, wa.y, a.shift);
+        if (!g.selection.length && tutorial) tutorial.tryForgive(wa.x, wa.y);
       }
       this._lastClickEnt = ent ? ent.id : null; this._lastClickT = now;
     } else {

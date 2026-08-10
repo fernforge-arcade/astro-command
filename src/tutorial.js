@@ -60,6 +60,15 @@ export class Tutorial {
               'A selected unit shows a green ring and appears in the panel at the bottom.',
         highlight: g => { const w = nearestWorker(g); return w && { x: w.x, y: w.y, r: 26, color: '#3ddc84' }; },
         done: g => !!selectedWorker(g),
+        // Click forgiveness: the highlight ring (r=26, pulsing to 34) is drawn much
+        // larger than the worker's actual hit radius (12) so it's visible at a glance —
+        // but that means a click anywhere in the visible ring should count, or a player
+        // clicking where we told them to look gets nothing (reported: "it says click the
+        // item above, and when I do nothing happens").
+        forgive: (g, wx, wy) => {
+          const w = nearestWorker(g);
+          if (w && dist(wx, wy, w.x, w.y) <= 26) { g._addToSelection(w); g._normalizeSelection(); }
+        },
       },
       {
         title: 'Step 2 — Send it to mine',
@@ -140,6 +149,14 @@ export class Tutorial {
       this._baseDeliveries = this.g.stats.playerDeliveries;
     }
     this._render();
+  }
+
+  // Called after a click that selected nothing, so a step can widen its own
+  // hit-test to match what its highlight visually promises.
+  tryForgive(wx, wy) {
+    if (!this.active) return;
+    const s = this.steps[this.idx];
+    if (s.forgive) s.forgive(this.g, wx, wy);
   }
 
   // Called every frame from the main loop.
